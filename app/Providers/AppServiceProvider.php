@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Http;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->pterodactylAdminServer();
+    }
+
+    private function pterodactylAdminServer() {
+        Http::macro('pteroAdmin', function () {
+            return Http::withHeaders([
+                'Authorization' => 'Bearer ' . env("PTERODACTYL_ADMIN_TOKEN"),
+                'Accept' => 'application/json'
+            ])->baseUrl(env("PTERODACTYL_URL") . "/api/application");
+        });
     }
 }
