@@ -13,6 +13,9 @@ class ServerController extends Controller
             'Content-Type' => 'application/json']);
     }
 
+    /*
+    *   Http::pteroAdmin is a bootstrap macro for making api requests
+    */
     public function getServers() {
         try {
             $response = Http::pteroAdmin()->get("/servers");
