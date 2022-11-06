@@ -16,6 +16,7 @@ use App\Http\Controllers\Services\Pterodactyl\Admin\ServerController;
 |
 */
 Route::get('servers', [ServerController::class, 'getServers']);
+Route::get('servers/{id}', [ServerController::class, 'getServerDetails']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
